@@ -7,6 +7,7 @@ cards_blueprint = Blueprint('cards', __name__)
 
 @cards_blueprint.route('/cards', methods=["GET"])
 def get_all_cards() -> list[dict]:
+    print("All cardsf")
     cur = db.new_cursor(dictionary=True)
     cur.execute("SELECT * FROM cards")
     cards = cur.fetchall()
