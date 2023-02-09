@@ -15,16 +15,25 @@ def get_all_users() -> list[dict]:
 # Function to get user by name
 @users_blueprint.route('/users/<email>', methods=["GET"])
 def get_user_by_name(email):
-    cur = db.new_cursor(dictionary=True)
-    cur.execute(read_sql("get_user_by_name"), [email])
-    user = cur.fetchall()
-    return user
+    try:
+        if type(email) != str:
+            raise ValueError
+        cur = db.new_cursor(dictionary=True)
+        cur.execute(read_sql("get_user_by_name"), [email])
+        user = cur.fetchall()
+        return user
+    except ValueError:
+        return "Invalid input", 422
 
 # Function to get user cards
 @users_blueprint.route('/users/<name>/cards', methods=["GET"])
 def get_user_cards(name) -> list[dict]:
-    cur = db.new_cursor(dictionary=True)
-    cur.execute(read_sql("get_user_cards"), [name])
-    user = cur.fetchall()
-    return user
-    
+    try:
+        if type(name) != str:
+            raise ValueError
+        cur = db.new_cursor(dictionary=True)
+        cur.execute(read_sql("get_user_cards"), [name])
+        user = cur.fetchall()
+        return user
+    except ValueError:
+        return "Invalid user input", 422
