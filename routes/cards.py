@@ -14,15 +14,10 @@ def get_all_cards() -> list[dict]:
 
 @cards_blueprint.route("/cards/<name>", methods=["GET"])
 def get_card_by_id(name):
-    try:
-        if type(name) != str:
-            raise ValueError
-        cur = db.new_cursor(dictionary=True)
-        cur.execute(read_sql("get_card_by_name"), [name])
-        cards = cur.fetchall()
-        return cards
-    except ValueError:
-        return "Invalid input for name", 422
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_name"), [name])
+    cards = cur.fetchall()
+    return cards
 
 #--------------------------------------------------------------
 # I, Mike, added these, I hope they are right
@@ -33,14 +28,15 @@ def get_card_by_id(name):
 @cards_blueprint.route("/cards/<cardtype>", methods=["GET"])
 def get_cards_by_type(cardtype):
     try:
-        if type(cardtype) != str:
+        if not cardtype.isalpha():
             raise ValueError
+    except ValueError:
+        return "Invalid input for type", 422
+    else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_by_type"), [type])
         cards_by_type = cur.fetchall()
         return cards_by_type
-    except ValueError:
-        return "Invalid input for type", 422
 
 
 # Function to query cards by hp
