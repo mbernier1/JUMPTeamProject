@@ -13,6 +13,10 @@ def create_app():
 
     db.init_app(app)
 
+    @app.route("/", methods=["GET"])
+    def hello():
+        return "Welcome to the Pokemon Card Bootleg Market 🥴"
+
     app.register_blueprint(cards_blueprint)
     app.register_blueprint(users_blueprint)
 

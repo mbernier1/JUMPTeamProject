@@ -13,7 +13,6 @@ CREATE TABLE cards (
 );
 
 DROP TABLE IF EXISTS users;
-
 CREATE TABLE users(
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(40) NOT NULL,
@@ -21,7 +20,6 @@ CREATE TABLE users(
 );
 
 DROP TABLE IF EXISTS types;
-
 CREATE TABLE types(
     type_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     type_name VARCHAR(40) NOT NULL
@@ -55,7 +53,6 @@ CREATE TABLE cards_types(
 );
 
 DROP TABLE IF EXISTS cards_sales;
-
 CREATE TABLE cards_sales(
     card_id INT UNSIGNED NOT NULL,
     sale_id INT UNSIGNED NOT NULL,

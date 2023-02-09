@@ -21,7 +21,7 @@ INSERT INTO types (type_id, type_name) VALUES
     (3, "Water"),
     (4, "Lightning");
 
-INSERT INTO cards_types VALUES (card_id, type_id)
+INSERT INTO cards_types (card_id, type_id) VALUES 
     (1, 1),
     (2, 1),
     (3, 1),
