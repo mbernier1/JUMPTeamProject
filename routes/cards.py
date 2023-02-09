@@ -35,10 +35,16 @@ def get_cards_by_type(type):
 # Function to query cards by hp
 @cards_blueprint.route("/cards/<hp>", methods=["GET"])
 def get_cards_by_hp(hp):
-    cur = db.new_cursor(dictionary=True)
-    cur.execute(read_sql("get_card_by_hp"), [hp])
-    cards_by_hp = cur.fetchall()
-    return cards_by_hp
+        try:
+            if type(hp) != int:
+                raise ValueError
+
+            cur = db.new_cursor(dictionary=True)
+            cur.execute(read_sql("get_card_by_hp"), [hp])
+            cards_by_hp = cur.fetchall()
+            return cards_by_hp
+        except ValueError:
+            return "Invalid input for HP", 422
 
 # Function to query cards by price
 @cards_blueprint.route("/cards/<price>", methods=["GET"])
