@@ -30,10 +30,10 @@ def get_card_by_id(name):
 
 
 # Function to query cards by type
-@cards_blueprint.route("/cards/<type>", methods=["GET"])
-def get_cards_by_type(type):
+@cards_blueprint.route("/cards/<cardtype>", methods=["GET"])
+def get_cards_by_type(cardtype):
     try:
-        if type(type) != str:
+        if type(cardtype) != str:
             raise ValueError
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_by_type"), [type])
@@ -46,27 +46,31 @@ def get_cards_by_type(type):
 # Function to query cards by hp
 @cards_blueprint.route("/cards/<hpmin>-<hpmax>", methods=["GET"])
 def get_cards_by_hp(hpmin, hpmax):
-        try:
-            if type(hpmin) != int or type(hpmax) != int or not hpmin < hpmax:
-                raise ValueError
-
-            cur = db.new_cursor(dictionary=True)
-            cur.execute(read_sql("get_card_by_hp"), [hpmin, hpmax])
-            cards_by_hp = cur.fetchall()
-            return cards_by_hp
-        except ValueError:
-            return "Invalid input for HP", 422
+    try:
+        hpmin = int(hpmin)
+        hpmax = int(hpmax)
+        if not hpmin < hpmax:
+            raise ValueError
+    except ValueError:
+        return "Invalid hp inputs", 422
+    else:
+        cur = db.new_cursor(dictionary=True)
+        cur.execute(read_sql("get_card_by_hp"), [hpmin, hpmax])
+        cards_by_hp = cur.fetchall()
+        return cards_by_hp
 
 # Function to query cards by price
 @cards_blueprint.route("/cards/<pricemin>-<pricemax>", methods=["GET"])
 def get_cards_by_price(pricemin, pricemax):
     try:
-        if type(pricemin) != float or type(pricemax) != float or not pricemin < pricemax:
+        pricemin = float(pricemin)
+        pricemax = float(pricemax)
+        if pricemin < pricemax:
             raise ValueError
-        
+    except ValueError:
+        return "Invalid input for price", 422
+    else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_by_price"), [pricemin, pricemax])
         cards_by_price = cur.fetchall()
         return cards_by_price
-    except:
-        return "Invalid input for Price", 422
