@@ -1,0 +1,4 @@
+09:56:47,197 root INFO function test_one called with args 1, 2
+09:57:46,668 root INFO function test_one called with args 1, 2
+09:57:46,668 root INFO function test_exeption called with args 1, 2
+09:57:46,669 root INFO Exception raised in test_exeption. Exception ------> Test exception

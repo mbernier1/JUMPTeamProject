@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from database import db
 from misc.utilities import read_sql
 
+
 cards_blueprint = Blueprint('cards', __name__)
 
 @cards_blueprint.route('/cards', methods=["GET"])
