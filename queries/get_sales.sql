@@ -1,4 +1,4 @@
-SELECT 
+SELECT
     s.sale_id,
     s.user_id,
     s.`date`,
