@@ -30,15 +30,20 @@ CREATE TABLE types(
 DROP TABLE IF EXISTS sales;
 CREATE TABLE sales(
     sale_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    date DATE
+    user_id INT UNSIGNED,
+    date DATE,
+    CONSTRAINT fk_sale_user FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews(
     review_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
+    card_id INT UNSIGNED NOT NULL,
     rating SMALLINT NOT NULL,
-    review VARCHAR(255)
+    review VARCHAR(255),
+    CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT fk_review_card FOREIGN KEY (card_id) REFERENCES cards(card_id)
 );
 
 DROP TABLE IF EXISTS cards_types;
@@ -57,6 +62,7 @@ CREATE TABLE cards_sales(
     CONSTRAINT fk_card_sale FOREIGN KEY (card_id) REFERENCES cards(card_id),
     CONSTRAINT fk_sale FOREIGN KEY (sale_id) REFERENCES sales(sale_id)
 );
+
 
 DROP TABLE IF EXISTS user_inv;
 CREATE TABLE user_inv(

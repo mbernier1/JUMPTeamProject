@@ -19,17 +19,3 @@ def create_a_card():
     return "New pokemon added"
     
         
-
-# Read a card
-def read_a_card(card_name):
-    
-
-
-# Update a card
-def update_a_card(card_name):
-    
-
-
-# Delete a card
-def delete_a_card(card_name):
-    
