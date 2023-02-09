@@ -30,6 +30,6 @@ def test_create_and_delete_cards():
 
   assert get_cards[-1]['card_name'] == 'Squirtle'
 
-  d_response = app_test.test_client().delete("/cards/42")
+  d_response = app_test.test_client().delete("/cards/29")
 
   assert d_response._status_code == 204

@@ -31,7 +31,11 @@ def update_card(id, name, stage, retreat_cost, hp, price):
     cur.execute(read_sql("update_card"), [name, stage, retreat_cost, hp, price, id])
     
 # Delete card from database
-@cards_crud_blueprint.route('/cards/<name>', methods=["DELETE"])
-def delete_card(name):
+@cards_crud_blueprint.route('/cards/<id>', methods=["DELETE"])
+def delete_card(id):
     cur = db.new_cursor(dictionary=True)
-    cur.execute(read_sql("delete_card"), [name])
+    cur.execute(read_sql("delete_card"), [int(id)])
+    con = db.connection
+    con.commit()
+
+    return "Much success", 204
