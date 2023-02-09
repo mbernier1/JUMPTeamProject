@@ -19,4 +19,12 @@ def get_user_by_name(email):
     cur.execute(read_sql("get_user_by_name"), [email])
     user = cur.fetchall()
     return user
+
 # Function to get user cards
+@users_blueprint.route('/users/<name>/cards', methods=["GET"])
+def get_user_cards(name) -> list[dict]:
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_user_cards"), [name])
+    user = cur.fetchall()
+    return user
+    
