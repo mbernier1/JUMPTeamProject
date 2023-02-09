@@ -1,2 +1,1 @@
-SELECT * FROM cards
-DROP where card_name = %s
+DROP FROM cards WHERE card_id = %s;

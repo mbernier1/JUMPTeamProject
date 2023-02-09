@@ -17,7 +17,7 @@ CREATE TABLE users(
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(40) NOT NULL,
     email VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL
+    userpassword VARCHAR(40) NOT NULL
 );
 
 DROP TABLE IF EXISTS types;

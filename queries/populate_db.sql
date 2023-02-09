@@ -35,7 +35,7 @@ INSERT INTO cards_types (card_id, type_id) VALUES
     (11, 4),
     (12, 4);
 
-INSERT INTO users (user_id, username, email, password) VALUES
+INSERT INTO users (user_id, username, email, userpassword) VALUES
     (1, "Ruperto", "ruperto@gmail.com", "save the princess"),
     (2, "Mauricio", "mauricio@outlook.com", "textile engineer"),
     (3, "Zieglar", "zieglar@yahoo.com", "margarethe");

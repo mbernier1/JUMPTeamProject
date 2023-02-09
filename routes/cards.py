@@ -40,7 +40,7 @@ def get_cards_by_type(cardtype):
 
 
 # Function to query cards by hp
-@cards_blueprint.route("/cards/<hpmin>-<hpmax>", methods=["GET"])
+@cards_blueprint.route("/cards/hp/<hpmin>-<hpmax>", methods=["GET"])
 def get_cards_by_hp(hpmin, hpmax):
     try:
         hpmin = int(hpmin)
@@ -56,7 +56,7 @@ def get_cards_by_hp(hpmin, hpmax):
         return cards_by_hp
 
 # Function to query cards by price
-@cards_blueprint.route("/cards/<pricemin>-<pricemax>", methods=["GET"])
+@cards_blueprint.route("/cards/prices/<pricemin>-<pricemax>", methods=["GET"])
 def get_cards_by_price(pricemin, pricemax):
     try:
         pricemin = float(pricemin)
