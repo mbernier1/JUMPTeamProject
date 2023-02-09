@@ -12,8 +12,15 @@ def get_all_cards() -> list[dict]:
 
     return cards
 
-@cards_blueprint.route("/cards/<name>", methods=["GET"])
-def get_card_by_id(name):
+@cards_blueprint.route("/cards/<id>", methods=["GET"])
+def get_card_by_id(id):
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_id"), [id])
+    cards = cur.fetchall()
+    return cards
+
+@cards_blueprint.route("/cards/search/<name>", methods=["GET"])
+def get_card_by_name(name):
     cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("get_card_by_name"), [name])
     cards = cur.fetchall()
