@@ -17,11 +17,33 @@ def get_card_by_id(name):
     cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("get_card_by_name"), [name])
     cards = cur.fetchall()
-
     return cards
 
+
+#--------------------------------------------------------------
+# I, Mike, added these, I hope they are right
+
+
 # Function to query cards by type
+@cards_blueprint.route("/cards/<type>", methods=["GET"])
+def get_cards_by_type(type):
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_type"), [type])
+    cards_by_type = cur.fetchall()
+    return cards_by_type
 
 # Function to query cards by hp
+@cards_blueprint.route("/cards/<hp>", methods=["GET"])
+def get_cards_by_hp(hp):
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_hp"), [hp])
+    cards_by_hp = cur.fetchall()
+    return cards_by_hp
 
 # Function to query cards by price
+@cards_blueprint.route("/cards/<price>", methods=["GET"])
+def get_cards_by_price(price):
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_price"), [price])
+    cards_by_price = cur.fetchall()
+    return cards_by_price
