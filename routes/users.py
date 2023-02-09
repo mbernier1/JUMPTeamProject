@@ -12,6 +12,18 @@ def get_all_users() -> list[dict]:
     users = cur.fetchall()
     return users
 
+@users_blueprint.route('/users/<id>', methods=["GET"])
+def get_user_by_id(id):
+    try:
+        if type(id) != str:
+            raise ValueError
+        cur = db.new_cursor(dictionary=True)
+        cur.execute(read_sql("get_user_by_id"), [id])
+        user = cur.fetchall()
+        return user
+    except ValueError:
+        return "Invalid input", 422
+
 # Function to get user by name
 @users_blueprint.route('/users/<email>', methods=["GET"])
 def get_user_by_name(email):
