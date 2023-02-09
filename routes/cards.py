@@ -19,7 +19,6 @@ def get_card_by_id(name):
     cards = cur.fetchall()
     return cards
 
-
 #--------------------------------------------------------------
 # I, Mike, added these, I hope they are right
 
