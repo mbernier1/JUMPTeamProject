@@ -1,0 +1,3 @@
+SELECT *
+FROM cards
+WHERE hp BETWEEN %s AND %s;
