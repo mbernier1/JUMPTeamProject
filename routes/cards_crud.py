@@ -5,14 +5,14 @@ from misc.utilities import read_sql
 cards_crud_blueprint = Blueprint('cards_crud', __name__)
 
 # Add card to database
-@cards_crud_blueprint.route('/cards/<name>-<stage>-<retreat_cost>-<hp>-<cost>', method=["POST"])
+@cards_crud_blueprint.route('/cards', method=["POST"])
 def add_card(name, stage, retreat_cost, hp, cost):
     
-    #request.form['name']
-    #request.form['stage']
-    #request.form['retreat_cost']
-    #request.form['hp']
-    #request.form['cost']
+    name = request.form.get('name')
+    stage = request.form.get('stage')
+    retreat_cost = request.form.get('retreat_cost')
+    hp = request.form.get('hp')
+    cost = request.form.get('cost')
     
     cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("add_new_card"), [name, stage, retreat_cost, hp, cost])
