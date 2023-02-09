@@ -13,4 +13,4 @@ JOIN user_inv AS inv
     ON u.user_id = inv.user_id
 JOIN cards c
     ON inv.card_id = c.card_id
-WHERE u.email LIKE 'ruperto@gmail.com';
+WHERE u.user_id LIKE %s;

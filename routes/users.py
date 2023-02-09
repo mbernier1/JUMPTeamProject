@@ -26,13 +26,13 @@ def get_user_by_name(email):
         return "Invalid input", 422
 
 # Function to get user cards
-@users_blueprint.route('/users/<name>/cards', methods=["GET"])
-def get_user_cards(name) -> list[dict]:
+@users_blueprint.route('/users/<user_id>/cards', methods=["GET"])
+def get_user_cards(user_id) -> list[dict]:
     try:
-        if type(name) != str:
+        if type(user_id) != str:
             raise ValueError
         cur = db.new_cursor(dictionary=True)
-        cur.execute(read_sql("get_user_cards"), [name])
+        cur.execute(read_sql("get_user_cards"), [user_id])
         user = cur.fetchall()
         return user
     except ValueError:

@@ -45,7 +45,7 @@ def get_cards_by_hp(hpmin, hpmax):
     try:
         hpmin = int(hpmin)
         hpmax = int(hpmax)
-        if not hpmin < hpmax:
+        if hpmin > hpmax:
             raise ValueError
     except ValueError:
         return "Invalid hp inputs", 422
@@ -61,7 +61,7 @@ def get_cards_by_price(pricemin, pricemax):
     try:
         pricemin = float(pricemin)
         pricemax = float(pricemax)
-        if pricemin < pricemax:
+        if pricemin > pricemax:
             raise ValueError
     except ValueError:
         return "Invalid input for price", 422

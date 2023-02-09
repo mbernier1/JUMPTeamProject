@@ -1,3 +1,4 @@
+-- Active: 1675975167958@@127.0.0.1@3306@music
 DROP DATABASE IF EXISTS pokemon_db;
 CREATE DATABASE pokemon_db;
 USE pokemon_db;
