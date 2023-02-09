@@ -35,10 +35,10 @@ INSERT INTO cards_types (card_id, type_id) VALUES
     (11, 4),
     (12, 4);
 
-INSERT INTO users (user_id , email, password) VALUES
-    (1, "ruperto@gmail.com", "save the princess"),
-    (2, "mauricio@outlook.com", "textile engineer"),
-    (3, "zieglar@yahoo.com", "margarethe");
+INSERT INTO users (user_id, username, email, password) VALUES
+    (1, "Ruperto", "ruperto@gmail.com", "save the princess"),
+    (2, "Mauricio", "mauricio@outlook.com", "textile engineer"),
+    (3, "Zieglar", "zieglar@yahoo.com", "margarethe");
 
 INSERT INTO reviews (review_id, user_id, card_id, rating, review) VALUES
     (1, 1, 3, 4, "Absolutely poggers"),
