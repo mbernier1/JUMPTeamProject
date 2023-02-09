@@ -45,28 +45,28 @@ def get_cards_by_type(type):
 
 
 # Function to query cards by hp
-@cards_blueprint.route("/cards/<hp>", methods=["GET"])
-def get_cards_by_hp(hp):
+@cards_blueprint.route("/cards/<hpmin>-<hpmax>", methods=["GET"])
+def get_cards_by_hp(hpmin, hpmax):
         try:
-            if type(hp) != int:
+            if type(hpmin) != int or type(hpmax) != int or not hpmin < hpmax:
                 raise ValueError
 
             cur = db.new_cursor(dictionary=True)
-            cur.execute(read_sql("get_card_by_hp"), [hp])
+            cur.execute(read_sql("get_card_by_hp"), [hpmin, hpmax])
             cards_by_hp = cur.fetchall()
             return cards_by_hp
         except ValueError:
             return "Invalid input for HP", 422
 
 # Function to query cards by price
-@cards_blueprint.route("/cards/<price>", methods=["GET"])
-def get_cards_by_price(price):
+@cards_blueprint.route("/cards/<pricemin>-<pricemax>", methods=["GET"])
+def get_cards_by_price(pricemin, pricemax):
     try:
-        if type(price) != float:
+        if type(pricemin) != float or type(pricemax) != float or not pricemin < pricemax:
             raise ValueError
         
         cur = db.new_cursor(dictionary=True)
-        cur.execute(read_sql("get_card_by_price"), [price])
+        cur.execute(read_sql("get_card_by_price"), [pricemin, pricemax])
         cards_by_price = cur.fetchall()
         return cards_by_price
     except:
