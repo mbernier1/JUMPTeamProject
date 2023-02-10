@@ -29,7 +29,8 @@ def test_create_and_delete_cards():
   get_cards = json.loads(app_test.test_client().get("/cards").data)
 
   assert get_cards[-1]['card_name'] == 'Squirtle'
+  card_id = get_cards[-1]['card_id']
 
-  d_response = app_test.test_client().delete("/cards/29")
+  d_response = app_test.test_client().delete(f"/cards/{card_id}")
 
   assert d_response._status_code == 204
