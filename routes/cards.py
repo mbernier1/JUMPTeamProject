@@ -21,7 +21,6 @@ def get_card_by_id(name):
 
 #--------------------------------------------------------------
 # I, Mike, added these, I hope they are right
-# I, John, also hope they are right
 
 
 # Function to query cards by type
