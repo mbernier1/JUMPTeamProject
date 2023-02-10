@@ -15,8 +15,8 @@ def get_card_reviews(cname):
     else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_reviews"), [cname])
-        cards = cur.fetchall()
-        return cards
+        reviews = cur.fetchall()
+        return reviews
 
 # Function to get reviews by user
 @reviews_blueprint.route('/reviews/<email>', methods=['GET'])
@@ -29,5 +29,5 @@ def get_card_reviews(email):
     else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_reviews"), [email])
-        cards = cur.fetchall()
-        return cards
+        reviews = cur.fetchall()
+        return reviews
