@@ -1,3 +1,4 @@
+-- Active: 1675888900621@@127.0.0.1@3306@pokemon_db
 USE pokemon_db;
 
 INSERT INTO cards (card_id, card_name, stage, retreat_cost, hp, price) VALUES

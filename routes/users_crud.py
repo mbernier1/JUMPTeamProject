@@ -12,7 +12,7 @@ def add_user():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    cur = db.new_cursor(Dictionary=True)
+    cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("add_new_user"), [username, email, password])
     conn = db.connection
     conn.commit()
