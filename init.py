@@ -9,6 +9,7 @@ from routes.cards_crud import cards_crud_blueprint
 from routes.users_crud import users_crud_blueprint
 from routes.auth import authentication_blueprint
 
+
 def create_app():
 
     app = Flask(__name__)
