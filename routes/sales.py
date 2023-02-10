@@ -1,10 +1,7 @@
 from flask import Blueprint, request
 from database import db
 from misc.utilities import read_sql
-<<<<<<< HEAD
 import datetime
-=======
->>>>>>> d4026f778848beb2782b70a5d368007abcb3b95c
 
 sales_blueprint = Blueprint('sales', __name__)
 
