@@ -1,0 +1,1 @@
+SELECT sale_id FROM sales WHERE sales.sale_id=%s;

@@ -1,0 +1,1 @@
+Delete FROM cards_sales WHERE cards_sales.sale_id=%s;

@@ -1,0 +1,1 @@
+INSERT INTO sales(user_id, date) VALUES(%s, %s);
