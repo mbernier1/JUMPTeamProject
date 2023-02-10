@@ -36,11 +36,11 @@ def update_user(user_id):
 
     
 # Delete user from database
-@users_crud_blueprint.route('/users<user_id>', methods=["DELETE"])
+@users_crud_blueprint.route('/users/<user_id>', methods=["DELETE"])
 def delete_user(user_id):
     cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("delete_user"), [user_id])
     conn = db.connection
     conn.commit()
 
-    return f"User deleted", 200
+    return f"User deleted", 204

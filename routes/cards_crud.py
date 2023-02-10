@@ -46,4 +46,4 @@ def delete_card(id):
     conn = db.connection
     conn.commit()
 
-    return "Deletion complete", 200
+    return "Deletion complete", 204
