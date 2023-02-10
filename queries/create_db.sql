@@ -1,3 +1,4 @@
+-- Active: 1675975167958@@127.0.0.1@3306@music
 DROP DATABASE IF EXISTS pokemon_db;
 CREATE DATABASE pokemon_db;
 USE pokemon_db;
@@ -17,7 +18,7 @@ CREATE TABLE users(
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(40) NOT NULL,
     email VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL
+    userpassword VARCHAR(40) NOT NULL
 );
 
 DROP TABLE IF EXISTS types;

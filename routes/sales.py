@@ -2,7 +2,6 @@ from flask import Blueprint, request
 from database import db
 from misc.utilities import read_sql
 
-
 sales_blueprint = Blueprint('sales', __name__)
 
 # Get all sales
