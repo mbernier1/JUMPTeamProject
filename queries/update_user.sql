@@ -1,3 +1,3 @@
 UPDATE users
-SET card_name = %s, stage = %s, retreat_cost = %s, hp = %s, price = %s
-WHERE card_id = %s;
+SET username = %s, email = %s, userpassword = %s
+WHERE user_id = %s;
