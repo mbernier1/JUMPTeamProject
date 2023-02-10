@@ -13,12 +13,12 @@ def test_get_cards():
   assert response.status_code == 200
   assert json_data[0]['card_name'] == 'Tepig'
 
-# def test_show_card():
-#   response = app_test.test_client().get(f"/cards/2")
-#   json_data = json.loads(response.data)
+def test_show_card():
+  response = app_test.test_client().get(f"/cards/2")
+  json_data = json.loads(response.data)
 
-#   assert response.status_code == 200
-#   assert json_data[0]['card_name'] == 'Victini'
+  assert response.status_code == 200
+  assert json_data[0]['card_name'] == 'Victini'
 
 def test_create_and_delete_cards():
   body = {'name': 'Squirtle', 'hp': 100, "price": 4.3, 'retreat_cost': 1, 'stage': 0}
