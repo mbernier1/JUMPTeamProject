@@ -1,0 +1,42 @@
+10:26:24,811 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:26:24,811 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:26:37,299 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:26:37,299 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:26:52,71 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:26:52] "GET / HTTP/1.1" 200 -
+10:26:52,301 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:26:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+10:26:56,734 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:26:56] "GET /cards HTTP/1.1" 200 -
+10:28:01,660 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:28:01] "GET /cards HTTP/1.1" 200 -
+10:28:02,609 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:28:02] "GET /cards HTTP/1.1" 200 -
+10:28:03,416 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:28:03] "GET /cards HTTP/1.1" 200 -
+10:28:25,16 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:28:25,17 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:28:29,364 root INFO function get_all_cards called with args 
+10:28:29,393 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:28:29] "GET /cards HTTP/1.1" 200 -
+10:29:47,595 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:29:47,595 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:29:56,202 root INFO function get_all_cards called with args 
+10:29:56,231 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:29:56] "GET /cards HTTP/1.1" 200 -
+10:30:21,771 root INFO function get_all_cards called with args 
+10:30:21,780 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:30:21] "GET /cards HTTP/1.1" 200 -
+10:32:58,854 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:32:58,854 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:33:40,929 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:33:40,929 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:34:03,47 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:34:03,48 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:34:05,502 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:34:05] "GET /cards HTTP/1.1" 200 -
+10:34:41,816 werkzeug INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+10:34:41,816 werkzeug INFO [33mPress CTRL+C to quit[0m
+10:34:41,818 werkzeug INFO  * Restarting with stat
+10:34:43,357 werkzeug WARNING  * Debugger is active!
+10:34:43,365 werkzeug INFO  * Debugger PIN: 642-959-759
+10:34:51,882 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:34:51] "GET /cards HTTP/1.1" 200 -
+10:34:54,65 werkzeug INFO 127.0.0.1 - - [09/Feb/2023 10:34:54] "GET /cards HTTP/1.1" 200 -

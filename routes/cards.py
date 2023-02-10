@@ -2,18 +2,27 @@ from flask import Blueprint, request
 from database import db
 from misc.utilities import read_sql
 
+
 cards_blueprint = Blueprint('cards', __name__)
 
 @cards_blueprint.route('/cards', methods=["GET"])
 def get_all_cards() -> list[dict]:
+    print("All cardsf")
     cur = db.new_cursor(dictionary=True)
     cur.execute("SELECT * FROM cards")
     cards = cur.fetchall()
 
     return cards
 
-@cards_blueprint.route("/cards/<name>", methods=["GET"])
-def get_card_by_id(name):
+@cards_blueprint.route("/cards/<id>", methods=["GET"])
+def get_card_by_id(id):
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_id"), [id])
+    cards = cur.fetchall()
+    return cards
+
+@cards_blueprint.route("/cards/search/<name>", methods=["GET"])
+def get_card_by_name(name):
     cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("get_card_by_name"), [name])
     cards = cur.fetchall()
@@ -44,7 +53,7 @@ def get_cards_by_hp(hpmin, hpmax):
     try:
         hpmin = int(hpmin)
         hpmax = int(hpmax)
-        if not hpmin < hpmax:
+        if hpmin > hpmax:
             raise ValueError
     except ValueError:
         return "Invalid hp inputs", 422
@@ -60,7 +69,7 @@ def get_cards_by_price(pricemin, pricemax):
     try:
         pricemin = float(pricemin)
         pricemax = float(pricemax)
-        if pricemin < pricemax:
+        if pricemin > pricemax:
             raise ValueError
     except ValueError:
         return "Invalid input for price", 422
