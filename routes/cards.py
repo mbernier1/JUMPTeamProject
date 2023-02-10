@@ -38,13 +38,12 @@ def get_cards_by_type(cardtype):
     try:
         if not cardtype.isalpha():
             raise ValueError
-    except ValueError:
-        return "Invalid input for type", 422
-    else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_by_type"), [type])
         cards_by_type = cur.fetchall()
         return cards_by_type
+    except ValueError:
+        return "Invalid input for type", 422
 
 
 # Function to query cards by hp
@@ -55,13 +54,12 @@ def get_cards_by_hp(hpmin, hpmax):
         hpmax = int(hpmax)
         if hpmin > hpmax:
             raise ValueError
-    except ValueError:
-        return "Invalid hp inputs", 422
-    else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_by_hp"), [hpmin, hpmax])
         cards_by_hp = cur.fetchall()
         return cards_by_hp
+    except ValueError:
+        return "Invalid hp inputs", 422\
 
 # Function to query cards by price
 @cards_blueprint.route("/cards/prices/<pricemin>-<pricemax>", methods=["GET"])
@@ -71,10 +69,9 @@ def get_cards_by_price(pricemin, pricemax):
         pricemax = float(pricemax)
         if pricemin > pricemax:
             raise ValueError
-    except ValueError:
-        return "Invalid input for price", 422
-    else:
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_card_by_price"), [pricemin, pricemax])
         cards_by_price = cur.fetchall()
         return cards_by_price
+    except ValueError:
+        return "Invalid input for price", 422

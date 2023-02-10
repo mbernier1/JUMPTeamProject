@@ -15,8 +15,7 @@ def get_all_users() -> list[dict]:
 @users_blueprint.route('/users/<id>', methods=["GET"])
 def get_user_by_id(id):
     try:
-        if type(id) != str:
-            raise ValueError
+        id = int(id)
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_user_by_id"), [id])
         user = cur.fetchall()
