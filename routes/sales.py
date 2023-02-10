@@ -115,7 +115,7 @@ def handle_add_new_sale():
             card_sales = []
             for i in items:
                 card_sales.append((int(i), int(transaction_id)))
-            cursor.executemany(read_sql('append_card_card_sales'), card_sales)
+            cursor.executemany(read_sql('append_card_sales'), card_sales)
 
             db.connection.commit()
 
