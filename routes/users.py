@@ -41,11 +41,10 @@ def get_user_by_name(email):
 @users_blueprint.route('/users/<user_id>/cards', methods=["GET"])
 def get_user_cards(user_id) -> list[dict]:
     try:
-        if type(user_id) != str:
-            raise ValueError
+        user_id = int(user_id)
         cur = db.new_cursor(dictionary=True)
         cur.execute(read_sql("get_user_cards"), [user_id])
         user = cur.fetchall()
         return user
-    except ValueError:
+    except:
         return "Invalid user input", 422
