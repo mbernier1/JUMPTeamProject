@@ -68,8 +68,8 @@ def handle_add_new_sale():
     if request.method == 'POST':
 
         try:
-            user_id = request.form.get('user_id')
-            items = request.form.get('items')
+            user_id = request.json.get('user_id')
+            items = request.json.get('items')
             date = str(datetime.datetime.now().date())
 
             cursor = db.new_cursor(dictionary=True)
@@ -95,8 +95,8 @@ def handle_add_new_sale():
 
         try:
 
-            transaction_id = request.form.get('transaction_id')
-            items = request.form.get('items')
+            transaction_id = request.json.get('transaction_id')
+            items = request.json.get('items')
 
             if transaction_id is None:
                 raise Exception("Unable to identify sales id")
@@ -128,7 +128,7 @@ def handle_add_new_sale():
 
     if request.method == "DELETE":
         try:
-            transaction_id = request.form.get('transaction_id')
+            transaction_id = request.json.get('transaction_id')
             if transaction_id is None:
                 raise Exception("Unable to identify sales id")
 
