@@ -12,7 +12,7 @@ def handle_all_sales_request() -> list[dict]:
     cursor.execute(read_sql("get_all_sales"))
     sales = cursor.fetchall()
 
-    return sales
+    return sales, 200
 
 # Get cards and how many times they've been sold
 @sales_blueprint.route('/sales/<id>', methods=['GET'])
@@ -22,9 +22,9 @@ def handle_sales_retrieval(id:str):
         cursor = db.new_cursor(dictionary=True)
         cursor.execute(read_sql("get_sale_by_id"), [id])
         sale = cursor.fetchall()
-        return sale
+        return sale, 200
 
-    return "Sales ID does not exist or is invalid"
+    return "Sales ID does not exist or is invalid", 400
 
 # Get purchases by user
 @sales_blueprint.route('/sales/user/<id>', methods=['GET'])
@@ -33,9 +33,9 @@ def handle_sales_by_user_id(id):
         cursor = db.new_cursor(dictionary=True)
         cursor.execute(read_sql("get_sales_by_user_id"), [id])
         sale = cursor.fetchall()
-        return sale
+        return sale, 200
 
-    return "ID is invalid"
+    return "ID is invalid", 400
 
 # Handling inserting and updating a new record
 @sales_blueprint.route('/sales/handle_sale/', methods=['POST', 'PUT', 'DELETE'])
@@ -44,17 +44,17 @@ def handle_add_new_sale():
     if request.method == 'POST':
         print("Post initiated")
         try:
-            user_id = request.json.get('user_id')
-            items = request.json.get('items')
+            user_id = request.form.get('user_id')
+            items = request.form.get('items')
             date = str(datetime.datetime.now().date())
             
             cursor = db.new_cursor(dictionary=True)
             cursor.execute(read_sql('create_sale_record'), [user_id, date])
-            new_record_id = cursor.lastrowid
+            sale_id = cursor.lastrowid
 
             card_sales = []
-            for i in items:
-                card_sales.append((int(i), int(new_record_id)))
+            for card_id in items:
+                card_sales.append((int(card_id), int(sale_id)))
             
             cursor.executemany(read_sql('append_card_sales'), card_sales)
 
@@ -73,10 +73,11 @@ def handle_add_new_sale():
         print("Update requested")
         try:
             # user_id = request.json.get('user_id')
-            transaction_id = request.json.get('transaction_id')
-            items = request.json.get('items')
+            transaction_id = request.form.get('transaction_id')
+            items = request.form.get('items')
 
-            if transaction_id is None: raise Exception("Unable to identify sales id")
+            if transaction_id is None: 
+                raise Exception("Unable to identify sales id")
 
             cursor = db.new_cursor(dictionary=True)
             # cursor.execute("Select sale_id from sales where sales.sale_id=%s", [transaction_id])
@@ -102,7 +103,7 @@ def handle_add_new_sale():
 
     if request.method == "DELETE":
         try:
-            transaction_id = request.json.get('transaction_id')
+            transaction_id = request.form.get('transaction_id')
             if transaction_id is None: raise Exception("Unable to identify sales id")
 
             cursor = db.new_cursor(dictionary=True)
