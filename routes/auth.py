@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from database import db
 from misc.utilities import read_sql
+import re
 
 authentication_blueprint = Blueprint('auth', __name__)
 
@@ -13,6 +14,8 @@ def login():
     cur.execute(read_sql("verify_user"), [email, password])
     res = cur.fetchall()
 
+    if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', email):
+        return "Invalid email address", 422
     if len(res) == 0:
         return "No match for username and password found", 404
 
@@ -42,6 +45,8 @@ def signup():
     username = request.form.get('username')
     email = request.form.get('email')
     password =request.form.get('password')
+    if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', email):
+        return "Invalid email address", 422
 
     cur = db.new_cursor(dictionary=True)
     cur.execute(read_sql("add_new_user"), [username, email, password])

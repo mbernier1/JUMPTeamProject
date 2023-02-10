@@ -53,10 +53,6 @@ def delete_card(id):
         conn = db.connection
         conn.commit()
 
-<<<<<<< HEAD
         return "Deletion complete", 200
     except:
         return "Invalid card ID", 422
-=======
-    return "Deletion complete", 204
->>>>>>> c88e174e243b0549d328e09938f05867f919ca1e
