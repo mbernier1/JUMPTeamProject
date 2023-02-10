@@ -21,15 +21,16 @@ def test_show_card():
   assert json_data[0]['card_name'] == 'Victini'
 
 def test_create_and_delete_cards():
-  body = {'card_name': 'Squirtle', 'hp': 100, "price": 4.3, 'retreat_cost': 1, 'stage': 0, 'card_id': 42}
-  p_response = app_test.test_client().post("/users", data=json.dumps(body))
+  body = {'name': 'Squirtle', 'hp': 100, "price": 4.3, 'retreat_cost': 1, 'stage': 0}
+  p_response = app_test.test_client().post("/cards", data=body)
 
   assert p_response.status_code == 201
 
-  get_cards = json.loads(app_test.test_client().get("/cards"))
+  get_cards = json.loads(app_test.test_client().get("/cards").data)
 
   assert get_cards[-1]['card_name'] == 'Squirtle'
+  card_id = get_cards[-1]['card_id']
 
-  d_response = app_test.test_client().delete("/cards/42")
+  d_response = app_test.test_client().delete(f"/cards/{card_id}")
 
   assert d_response._status_code == 204
