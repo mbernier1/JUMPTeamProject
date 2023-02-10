@@ -1,4 +1,4 @@
--- Active: 1675975167958@@127.0.0.1@3306@music
+-- Active: 1675888900621@@127.0.0.1@3306@pokemon_db
 DROP DATABASE IF EXISTS pokemon_db;
 CREATE DATABASE pokemon_db;
 USE pokemon_db;
@@ -70,4 +70,10 @@ CREATE TABLE user_inv(
     quantity INT UNSIGNED NOT NULL,
     CONSTRAINT fk_user_inv FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT fk_card_inv FOREIGN KEY (card_id) REFERENCES cards(card_id)
+);
+
+CREATE TABLE sessions(
+    session_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_session_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
