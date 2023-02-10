@@ -3,8 +3,6 @@ import json
 import sys
 sys.path.append(".")
 from init import create_app
-from misc.utilities import read_sql
-from database import db
 
 app_test = create_app()
 
