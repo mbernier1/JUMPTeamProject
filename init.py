@@ -8,6 +8,7 @@ from routes.reviews import reviews_blueprint
 from routes.cards_crud import cards_crud_blueprint
 from routes.users_crud import users_crud_blueprint
 from routes.auth import authentication_blueprint
+from routes.sessions import session_blueprint
 
 
 def create_app():
@@ -30,6 +31,7 @@ def create_app():
     app.register_blueprint(cards_crud_blueprint)
     app.register_blueprint(users_crud_blueprint)
     app.register_blueprint(authentication_blueprint)
+    app.register_blueprint(session_blueprint)
 
     return app
 
