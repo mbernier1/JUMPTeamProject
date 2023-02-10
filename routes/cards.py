@@ -28,11 +28,6 @@ def get_card_by_name(name):
     cards = cur.fetchall()
     return cards
 
-#--------------------------------------------------------------
-# I, Mike, added these, I hope they are right
-# I, John, also hope they are right
-
-
 # Function to query cards by type
 @cards_blueprint.route("/cards/<cardtype>", methods=["GET"])
 def get_cards_by_type(cardtype):
@@ -79,3 +74,23 @@ def get_cards_by_price(pricemin, pricemax):
         cur.execute(read_sql("get_card_by_price"), [pricemin, pricemax])
         cards_by_price = cur.fetchall()
         return cards_by_price
+    
+@cards_blueprint.route("/cards<retreat_cost>", methods=["GET"])
+def get_cards_by_retreat_cost(retreat_cost):
+    try:
+        if not retreat_cost.isnumeric():
+            raise ValueError
+    except ValueError:
+        return "Invalid input for type", 422
+    else:
+        cur = db.new_cursor(dictionary=True)
+        cur.execute(read_sql("get_card_by_retreat_cost"), [retreat_cost])
+        cards_by_retreat_cost = cur.fetchall()
+        return cards_by_retreat_cost
+    
+@cards_blueprint.route("/cards/popular", methods=["GET"])
+def get_popular_cards() -> list[dict]:
+    cur = db.new_cursor(dictionary=True)
+    cur.execute(read_sql("get_card_by_popularity"))
+    cards = cur.fetchall()
+    return cards
