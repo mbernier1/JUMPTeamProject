@@ -1,3 +1,3 @@
 SELECT * 
 FROM cards 
-WHERE card_name = %s;
+WHERE card_name LIKE CONCAT(%s, '%');

@@ -35,7 +35,7 @@ def get_cards_by_type(cardtype):
         if not cardtype.isalpha():
             raise ValueError
         cur = db.new_cursor(dictionary=True)
-        cur.execute(read_sql("get_card_by_type"), [type])
+        cur.execute(read_sql("get_card_by_type"), [cardtype])
         cards_by_type = cur.fetchall()
         return cards_by_type
     except ValueError:
