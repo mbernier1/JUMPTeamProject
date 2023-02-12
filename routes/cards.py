@@ -73,7 +73,7 @@ def get_cards_by_price(pricemin, pricemax):
         cards_by_price = cur.fetchall()
         return cards_by_price
     
-@cards_blueprint.route("/cards<retreat_cost>", methods=["GET"])
+@cards_blueprint.route("/cards/retreat-cost/<retreat_cost>", methods=["GET"])
 def get_cards_by_retreat_cost(retreat_cost):
     try:
         if not retreat_cost.isnumeric():
