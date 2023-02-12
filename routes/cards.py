@@ -58,7 +58,7 @@ def get_cards_by_hp(hpmin, hpmax):
         return "Invalid hp inputs", 422\
 
 # Function to query cards by price
-@cards_blueprint.route("/cards/prices/<pricemin>-<pricemax>", methods=["GET"])
+@cards_blueprint.route("/cards/price/<pricemin>-<pricemax>", methods=["GET"])
 def get_cards_by_price(pricemin, pricemax):
     try:
         pricemin = float(pricemin)
