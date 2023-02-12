@@ -1,5 +1,6 @@
 from flask import Flask 
 from database import db
+from flask_cors import CORS
 from KEYS import USER, DATABASE, PASSWORD
 from routes.cards import cards_blueprint
 from routes.users import users_blueprint
@@ -14,6 +15,7 @@ from routes.sessions import session_blueprint
 def create_app():
 
     app = Flask(__name__)
+    CORS(app)
     app.config['MYSQL_DATABASE'] = DATABASE
     app.config['MYSQL_USER'] = USER
     app.config['MYSQL_PASSWORD'] = PASSWORD

@@ -29,7 +29,7 @@ def get_card_by_name(name):
     return cards
 
 # Function to query cards by type
-@cards_blueprint.route("/cards/<cardtype>", methods=["GET"])
+@cards_blueprint.route("/cards/type/<cardtype>", methods=["GET"])
 def get_cards_by_type(cardtype):
     try:
         if not cardtype.isalpha():
