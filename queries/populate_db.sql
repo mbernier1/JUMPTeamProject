@@ -13,8 +13,7 @@ INSERT INTO cards (card_id, card_name, stage, retreat_cost, hp, price) VALUES
     (9, "Vaporeon", 1, 2, 110, 4.20),
     (10, "Pikachu", 0, 1, 60, 2.34),
     (11, "Ampharos", 2, 2, 140, 5.11),
-    (12, "Electrode", 1, 0, 100, 5.99)
-;
+    (12, "Electrode", 1, 0, 100, 5.99);
 
 INSERT INTO types (type_id, type_name) VALUES
     (1, "Fire"),
@@ -44,7 +43,9 @@ INSERT INTO users (user_id, username, email, userpassword) VALUES
 INSERT INTO reviews (review_id, user_id, card_id, rating, review) VALUES
     (1, 1, 3, 4, "Absolutely poggers"),
     (2, 2, 7, 3, "It is what it is"),
-    (3, 3, 12, 5, "Ich liebe diese Karte");
+    (3, 3, 12, 5, "Ich liebe diese Karte"),
+    (4, 1, 1, 5, "Best starter. We had so many fights together, and stuck together until the end 🙏"),
+    (5, 1, 8, 3, "Not the best, but not every pokemon has to be the best. They are all trying their best");
 
 INSERT INTO sales (sale_id, `date`, user_id) VALUES
     (1, "2018-03-25", 1),
