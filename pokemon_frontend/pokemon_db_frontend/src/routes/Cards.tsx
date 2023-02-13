@@ -46,14 +46,13 @@ const Cards = () => {
     }
 
     const handleNumericalSearch = (min: number, max: number) => {
-        if (max < min) {
-            max = min
-            setMaxVal(max)
-        }
-
-        if (max == 0) {
+        if (max == 0 || max < min) {
             axios.get("http://localhost:8080/cards").then(res => setCards(res.data))
             return
+        }
+
+        if (typeof(max) == 'number' && typeof(min) == 'string') {
+            min = 0
         }
 
         if (queryType == 'hp') {
@@ -82,7 +81,6 @@ const Cards = () => {
 
   return (
     <div className='flex flex-col items-center'>
-        <h2>Querying localhost:8080/cards</h2>
 
         <form className='flex'
         onChange={handleQueryChange}>
@@ -110,19 +108,12 @@ const Cards = () => {
                     {" Price"}
                 </div>
             </label>
-            <label htmlFor="retreat_cost">
-                <div className='m-2 p-2 bg-white rounded-md text-black w-32 cursor-pointer'>
-                    <input type="radio" id="retreat_cost" value="retreat_cost" name="query_type"/>
-                    {" Retreat Cost"}
-                </div>
-            </label>
         </form>
 
         {queryType == 'name' || queryType == 'type' ? 
-            <form className='m-2 p-2 bg-white'
-            onChange={handleSearch}>
+            <form className='m-2 p-2 bg-white'>
                 <input type='text' className='p-2 w-full'
-                value={textQuery}
+                value={textQuery} onChange={handleSearch}
                 placeholder={`Search a ${queryType == "name" ? "Pokemon" : "Type"}`}/>
             </form>
             :
@@ -136,9 +127,9 @@ const Cards = () => {
             </div>
         }
 
-        <p>{minVal}</p>
+        <p>{maxVal < minVal ? "Upper value must be larger than smaller value" : ''}</p>
 
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap justify-center'>
             {cards && cards.map( card => (
                 <div className='w-96' key={card.card_id}>
                     <CardDetails card={card} />

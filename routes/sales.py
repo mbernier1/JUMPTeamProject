@@ -62,15 +62,17 @@ def handle_sales_by_user_id(id):
 
 
 
-@sales_blueprint.route('/sales/handle_sale/', methods=['POST', 'PUT', 'DELETE'])
+@sales_blueprint.route('/sales/handle-sale', methods=['POST', 'PUT', 'DELETE'])
 def handle_add_new_sale():
-
+    print("Here")
     if request.method == 'POST':
-
         try:
             user_id = request.json.get('user_id')
             items = request.json.get('items')
             date = str(datetime.datetime.now().date())
+
+            print(user_id)
+            print(items)
 
             cursor = db.new_cursor(dictionary=True)
             cursor.execute(read_sql('create_sale_record'), [user_id, date])
@@ -82,14 +84,29 @@ def handle_add_new_sale():
 
             cursor.executemany(read_sql('append_card_sales'), card_sales)
 
+            cursor.execute(read_sql('get_user_cards'), [user_id])
+            user_cards = cursor.fetchall()
+            print(len(user_cards))
+            existing_card = list(filter(lambda card: card['card_id'] == items[0], user_cards))
+            
+            if len(existing_card) > 0:
+                print("Updated quantity")
+                cursor.execute(read_sql("increase_inv_count"), [card_id])
+            else:
+                card_inventory = []
+                for card_id in items:
+                    card_inventory.append((int(user_id), int(card_id)))
+                cursor.executemany(read_sql('add_card_inventory'), card_inventory)
+
+
             db.connection.commit()
 
         except Exception as e:
             print(str(e))
-            return "Error handling update"
+            return "Error handling post"
 
         else:
-            return "Sales added successfully"
+            return {user_id: user_id, card_id: card_id}, 200
 
     if request.method == "PUT":
 

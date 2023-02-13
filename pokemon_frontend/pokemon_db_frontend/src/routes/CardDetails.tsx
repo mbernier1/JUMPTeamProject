@@ -1,4 +1,6 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useOutletContext } from 'react-router'
 
 type Card = {
     card_id: number
@@ -6,7 +8,8 @@ type Card = {
     hp: number,
     price: number,
     retreat_cost: number,
-    stage: number
+    stage: number,
+    quantity?: number
 }
 
 interface props {
@@ -14,9 +17,34 @@ interface props {
 }
 
 const CardDetails = ({card}: props) => {
+    const {userId}: any = useOutletContext()
+    const [message, setMessage] = useState("")
+
     const mapStage = (stage: number) => {
         return stage == 0 ? "Basic Stage"
         : `Stage ${stage}`
+    }
+
+    const handlePurchase = (cardId: number) => {
+        const waitMsg = (msg: string) => {
+            setMessage(msg)
+            setTimeout(() => setMessage(""), 3000)
+        }
+
+        if (userId == "None") {
+            waitMsg("Please login")
+            return
+        }
+
+        axios.post("http://localhost:8080/sales/handle-sale", {
+            user_id: userId,
+            items: [cardId],
+        })
+        .then(res => {
+            if (res.status == 200) {
+                waitMsg("Purchase successful")
+            }
+        })
     }
 
     return (
@@ -37,7 +65,14 @@ const CardDetails = ({card}: props) => {
             </div>
 
             <div>
-                <p className='text-black text-xl'>{`$${card.price}`}</p>
+                {!card.quantity && <p className='bg-green-200 p-2 text-black text-xl rounded-md cursor-pointer'
+                onClick={(e: any) => {
+                    e.preventDefault()
+                    handlePurchase(card.card_id)
+                }}
+                >{`$${card.price}`}</p>}
+                {card.quantity && <p className='flex justify-center bg-blue-200 p-2 w-12 text-black text-xl rounded-md'>{`${card.quantity}`}</p>}
+                <pre className='text-black'>{message}</pre>
             </div>
         </div>
   )

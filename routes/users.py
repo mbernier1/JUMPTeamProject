@@ -8,7 +8,7 @@ users_blueprint = Blueprint('users', __name__)
 @users_blueprint.route('/users', methods=["GET"])
 def get_all_users() -> list[dict]:
     cur = db.new_cursor(dictionary=True)
-    cur.execute("SELECT * FROM users")
+    cur.execute(read_sql("get_all_users"))
     users = cur.fetchall()
     return users
 

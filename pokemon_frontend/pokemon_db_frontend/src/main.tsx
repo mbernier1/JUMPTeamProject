@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
@@ -10,9 +10,10 @@ import NotFound from './NotFound'
 import Root from './Root'
 import Cards from './routes/Cards'
 import Reviews from './routes/Reviews'
-import Sales from './routes/Sales'
 import Sessions from './routes/Sessions'
 import Users from './routes/Users'
+import Login from './routes/Login'
+import Inventory from './routes/Inventory'
 
 const router = createBrowserRouter([
   {
@@ -33,12 +34,16 @@ const router = createBrowserRouter([
         element: <Reviews />
       },
       {
-        path: "sales",
-        element: <Sales />
+        path: "login",
+        element: <Login />
       },
       {
         path: "sessions",
         element: <Sessions />
+      },
+      {
+        path: "inventory",
+        element: <Inventory />
       }
     ]
   },

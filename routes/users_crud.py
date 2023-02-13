@@ -10,9 +10,11 @@ users_crud_blueprint = Blueprint('users_crud', __name__)
 def add_user():
 
     try:
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
+        username = request.json.get('username')
+        email = request.json.get('email')
+        password = request.json.get('password')
+
+        print(username)
         if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', email):
             return "Invalid Email address", 422
 

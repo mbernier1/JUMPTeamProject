@@ -1,0 +1,1 @@
+INSERT INTO user_inv (user_id, card_id, quantity) VALUES (%s, %s, 1);
